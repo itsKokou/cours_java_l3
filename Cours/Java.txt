@@ -1,0 +1,13 @@
+********* SOLID *******
+
+-S: Single responsability : chaq classe/fonction/couche gère une responsabilité unique 
+
+-O : Open and close principe : fermeture à la modification, ouvert à l'évolution
+
+-L : Liskov principle : ségrégation des interfaces
+
+-I : inversion de contrôle
+
+-D : Injection de dépendances: 
+
+______________________________________________________________________________________

@@ -1,0 +1,118 @@
+[  ]
+
+NB : - ** => Important
+
+$CHP II [23/09/2023]
+-------
+
+£ Application :
+
+    - Architecture : (Comment l'application est organisée ) **
+        * Maintenance 
+        * Evolution
+
+    - Fonctionnel => Metier (Use Case)
+
+    - Non Fonctionnel (concerne tout ce qui est sécurité) **
+        * Sécurité
+        * Scalabilité => Le moins de ressources possible
+        * Haute disponibilité
+
+# Architectures 
+_______________
+
+    @ Architecture Monolitique => bloc (Ensemble de couche, packages) :
+        - Vue (console - Web - Mobile) [JEE]: Représentation graphique des fonctionnalités 
+        - Metier (ou services ou business) : Change suivant le domaine, fournit des données à la vue
+        - Accès aux données (ou de persistance) : gère tout ce qui est relatif aux données 
+        - Sources de données (txt, json, BDD) 
+        - Models (ou entities) : Diagramme de classe. Les trois premiers couches (Vues, Metier, persistance) l'utilisent. 
+        [JAVA Bins]
+
+        + Inconvénient : Si on doit faire une vue web et une vue mobile, on va développer 2 applications 
+
+    @ Autres Architectures  (Meilleurs) :  est entre les deux
+        - Vues (Front)
+            + web 
+            + mobile 
+
+        - Metier (Back)
+            + web 
+            + services (autant d'interfaceque de services)
+            + Repositories (discute avec les données)
+            + bd  
+            + entities (échange de données)
+
+    @ Architecture distribuée => MicroService (Ce qui se fait aujourd'hui [en Master])
+
+Installer IntelliJ (payant) (à partir du mail ...edu.sn)
+
+serialisation => transformer en une chaîne de caractère un objet
+
+[Autres notions]
+----------------
+Couplage => Dépendance 
+
+* Couplage Fort
+    c'est lorsque la liaison est fait à travers une classe
+    Avantages 
+    Inconvénients
+
+$ Inversion de contrôle + Couplage Faible : fermer à la modification et ouvert l'évolution
+    + Couplage Faible : c'est lorsque la liaison est fait à travers une interface
+    + Inversion de contrôle :  avant de créer une classe il faut créer une interface
+
+
+$ Interface : pose un contrat / une norme de programmation (Quoi?)
+    entité formée seulement de méthodes abstract (prototype ou signature) 
+    [!= méthodes concrètes (prototype ou signature + définition)]
+
+
+
+$ Implémentation : une concrétisation (comment?)
+
+Exemple :
+---------
+        public interface ITable {
+            // int insert();
+            // int update();
+            int indexof(int id);
+        }
+
+        public class TableCategorie implements ITable {
+            private ArrayList <Categorie> tables= new ArrayList<>();
+
+            @Override
+            public int indexof(int id){
+                int pos=0;
+                // tables.remove(tables)
+                for (Categorie cat : tables) {
+                    if(cat.getId()==id){
+                        return pos;
+                    }
+                    pos++;
+                }
+                return -1;
+            }
+        }
+
+$ Generécité : Avoir des types qui sont Variable. On les applique sur des classes
+    Ex: 
+        //niveau interface
+        public interface ITable<T>{
+            T somme(T a, T b) //T est variable
+        }
+
+        //niveau implementation
+        public class TableCategorie implements ITable<Categorie>{}
+
+
+¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+FACTORISER : ARRAYLIST ET INDEXOF
+
+insert 
+update 
+findall 
+findbyid
+indexof
+delete
